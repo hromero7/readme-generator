@@ -57,6 +57,8 @@ const questions = [
 let userPrompt = () => {
     return inquirer.prompt(questions);
 }
+const avatar = [];
+const email = [];
 
 let api = (answers) => {
     const queryUrl = `https://api.github.com/users/${answers.username}`
@@ -64,8 +66,8 @@ let api = (answers) => {
     .get(queryUrl)
     .then(function(res){
         // console.log(res.data.avatar_url)
-        const avatar = res.data.avatar_url;
-        const email = res.data.email;
+        avatar.push(res.data.avatar_url);
+        email.push(res.data.email);
     })
 }
 
@@ -114,17 +116,15 @@ ${answers.test}
 ---
 
 ## Questions
-<img src='${avatar}'` + " alt='avatar' style='border-radius: 16px' width='30'/>" +
-`<br>Any questions email me at ${email}`
+<img src='${avatar[0]}'` + " alt='avatar' style='border-radius: 16px' width='30px'/>" +
+`<br>Any questions email me at ${email[0]}`
 }
 
 
 async function init() {
     try {
         const answers = await userPrompt();
-        const data = api(answers);
-        const avatar = data.avatar_url;
-        const email =  data.email;
+        const data = await api(answers);
         const template = generateReadME(answers, avatar, email);
         await writeFileAsync("README.md", template);
         console.log("Success");
@@ -134,39 +134,3 @@ async function init() {
 }
 
 init();
-
-// function init () {
-// inquirer
-//   .prompt(questions)
-//   .then(function(answers) {
-//     let { username } = answers
-//     console.log(answers);
-//     const queryUrl = `https://api.github.com/users/${username}`;
-//     axios
-//     .get(queryUrl)
-//     .then(function(res){
-//       const avatar = res.data.avatar_url;
-//       const email = res.data.email;
-     
-//       console.log(res.data.avatar_url);
-//       fs.writeFile("README.md", answers,function(err) {
-//           if(err) {
-//               throw err;
-              
-//           }
-//           console.log("Saved");
-//       })
-
-//       });
-//   }
-//   )};
-
-//   init(); 
-  
-
-// fs.writeFile("README.md", JSON.stringify(answers), function(err){
-//     if(err){
-//         throw err
-//     }
-//     console.log("Saved");
-// })

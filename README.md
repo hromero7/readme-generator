@@ -1,8 +1,8 @@
-# 
+# ReadMe Generator
 
 ## Description
 
-
+This command line application uses inputs from a user to generate a good README for a github project.
 
 ## Table of Contents
 
@@ -23,7 +23,7 @@ npm install
 
 ## Usage
 
-
+If user's email is privated on github, the value will display as null.
 
 ## License
 
@@ -31,7 +31,7 @@ This project is licensed under the MIT license.
 
 ## Contributing
 
-
+N/A
 
 ## Tests
 
@@ -42,4 +42,4 @@ test
 ---
 
 ## Questions
-<img src='undefined' alt='avatar' style='border-radius: 16px' width='30'/><br>Any questions email me at undefined
+<img src='https://avatars3.githubusercontent.com/u/58020216?v=4' alt='avatar' style='border-radius: 16px' width='30px'/><br>Any questions email me at null.
